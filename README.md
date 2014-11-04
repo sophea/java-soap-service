@@ -1,7 +1,7 @@
 java-soap-service
 =================
 
-Create Soap Service with Spring web service ( maven , springframeworkd , jdk 1.6 to up)
+Create Soap Service with Spring web service ( maven , spring-framework, web-service , jdk 1.6 to up)
 ================================
 
 ```java
