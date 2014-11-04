@@ -1,0 +1,65 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:sws="http://www.springframework.org/schema/web-services"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+  <sws:annotation-driven/>
+
+<context:component-scan base-package="com.sma.soap" />
+<context:annotation-config />   
+
+<!-- <bean id="holidayEndpoint" class="com.goldengekko.soap.HolidayEndpoint">
+        <constructor-arg ref="hrService"/>
+    </bean>
+ 
+    <bean id="hrService" class="com.goldengekko.soap.StubHumanResourceService"/>
+ 
+    <bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping">
+        <property name="mappings">
+            <props>
+                <prop key="{http://mycompany.com/hr/schemas}HolidayRequest">holidayEndpoint</prop>
+            </props>
+        </property>
+        <property name="interceptors">
+            <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+        </property>
+    </bean>
+     -->
+     
+<bean id="messageFactory" class="com.sma.soap.MyFactorySoapMessage" />
+<bean id="endpointMapping" class="org.springframework.ws.soap.addressing.server.SimpleActionEndpointMapping" />
+
+<!-- All SOAP 1.1 requests will "drop" through, so catch them here -->
+<bean id="soap11EndpointMapping" class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping" />
+
+<sws:dynamic-wsdl id="hr"
+    portTypeName="HumanResource"
+    locationUri="/holidayService/"
+    targetNamespace="http://mycompany.com/hr/schemas">
+  <sws:xsd location="/WEB-INF/hr.xsd"/>
+</sws:dynamic-wsdl>
+
+<sws:dynamic-wsdl id="order"
+    portTypeName="OrderResource"
+    locationUri="/orderService/"
+    targetNamespace="http://tempuri.org/">
+                                   
+  <sws:xsd location="/WEB-INF/order.xsd" />    
+
+</sws:dynamic-wsdl>
+
+<sws:dynamic-wsdl id="partnerCallbackService"                                                           
+    portTypeName="PartnerCallbackService"                                                         
+    locationUri="/callbackService/"      
+    createSoap12Binding="true"
+    requestSuffix=""
+                                                     
+    targetNamespace="http://tempuri.org/">                               
+  <sws:xsd location="/WEB-INF/partnerCallbackService.xsd"/>                                                  
+</sws:dynamic-wsdl>
+
+</beans>

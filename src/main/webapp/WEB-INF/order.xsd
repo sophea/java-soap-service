@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tempuri.org/" 
+xmlns:tns="http://tempuri.org/" elementFormDefault="qualified">
+<element name="orderRequest">
+  <complexType>
+    <sequence>
+      <element name="item" type="string"/>
+      <element name="quantity" type="integer"/>
+      <element name="city" type="string"/>
+      <element name="country" type="string"/>
+    </sequence>
+  </complexType>
+</element>
+
+<element name="orderResponse">
+  <complexType>
+    <sequence>
+      <element name="item" type="string"/>
+      <element name="quantity" type="string"/>
+      <element name="city" type="string"/>
+      <element name="country" type="string"/>
+      <element name="price" type="double"/>
+      <element name="isDeliver" type="boolean"/>
+    </sequence>
+  </complexType>
+</element>
+</schema>
