@@ -4,6 +4,7 @@ java-soap-service
 Create Soap Service with Spring web service ( maven , springframe , jdk 1.6 to up)
 ================================
 
+```java
     
 mvn eclipse:eclipse  ( prepare classpath)
 
@@ -143,7 +144,7 @@ DEBUG 2014-11-04 10:40:57 org.springframework.web.servlet.FrameworkServlet:913
  - Successfully completed request
 
 
-
+```
 
 
 
